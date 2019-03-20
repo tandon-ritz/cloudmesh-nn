@@ -1,5 +1,6 @@
 import requests
 import io
+import os
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -8,6 +9,7 @@ from sklearn.datasets import load_svmlight_file
 from sklearn.svm import SVC
 from os import listdir
 from flask import Flask, request, send_file, make_response
+from cloudmesh.nn.service import code_dir
 
 #url = 'https://drive.google.com/file/d/1ge5hCVEcSh57XKCh3CVY3GcnHc6WETpA/view?usp=sharing'
 #url = 'https://drive.google.com/uc?export=download&id=12u9eviakwqiqsz7x8Sp1ybG9uBaF9bJV'
@@ -16,18 +18,35 @@ from flask import Flask, request, send_file, make_response
 #Obviously we should use a text file and a post to get this value and read it in here.
 
 url = 'https://drive.google.com/uc?export=download&id=1ge5hCVEcSh57XKCh3CVY3GcnHc6WETpA'
-def download_data(url, filename):
+
+def get_url():
+    input_path = code_dir+'/input/input.txt'
+    input_file = open(input_path, "rt")
+    contents = input_file.read()
+    url = contents.rstrip()
+    input_file.close()
+    return str(url)
+
+def new_download(filename):
+    get_url()
     r = requests.get(url, allow_redirects=True)
     open(filename, 'wb').write(r.content)
 
+def download_data(url, filename):
+    r = requests.get(url, allow_redirects=True)
+    open(filename, 'wb').write(r.content)
+    return 
+    
 def download(output):
-    output_file = 'data/'+output
-    download_data(url=url, filename=output_file)
-    return  str(output) + " Downloaded"
+    data_dir = code_dir+'/data/'
+    output_file = data_dir+output
+    new_download(filename=output_file)
+    return  str(output) + " Downloaded" +"to" + str(code_dir)
 
 
 def generate_figure(filename):
-    file = 'data/' + filename
+    data_dir = code_dir+'/data/'
+    file = data_dir + filename
     with open(file,'r') as csvfile:
         my_file = pd.read_csv(csvfile)
         nfl = my_file
@@ -40,7 +59,8 @@ def generate_figure(filename):
     return bytes_image
 
 def generate_figureNorm(filename):
-    file = 'data/' + filename
+    data_dir = code_dir+'/data/'
+    file = data_dir + filename
     with open(file,'r') as csvfile:
         my_file = pd.read_csv(csvfile)
         nfl = my_file
