@@ -21,8 +21,7 @@ paths:
     get:
       tags:
         - DATA
-      x-swagger-router-controller: nn/service/data
-      operationId: download
+      operationId: cloudmesh.nn.service.partition.download
       description: "Downloads data from url"
       produces: 
         - "application/json"
