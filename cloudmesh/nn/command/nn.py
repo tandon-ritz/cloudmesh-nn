@@ -16,8 +16,8 @@ class NnCommand(PluginCommand):
         ::
 
           Usage:
-                nn --file=FILE
-                nn list
+                nn start
+                nn stop
 
           This command does some useful things.
 
@@ -28,18 +28,14 @@ class NnCommand(PluginCommand):
               -f      specify the file
 
         """
-        arguments.FILE = arguments['--file'] or None
-
-        print(arguments)
 
         m = Manager()
 
-
-        if arguments.FILE:
+        if arguments.start:
             print("option a")
             m.list(path_expand(arguments.FILE))
 
-        elif arguments.list:
+        elif arguments.stop:
             print("option b")
             m.list("just calling list without parameter")
 
