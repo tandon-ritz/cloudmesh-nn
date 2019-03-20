@@ -21,7 +21,7 @@ paths:
     get:
       tags:
         - DATA
-      operationId: cloudmesh.nn.service.partition.download
+      operationId: cloudmesh.nn.service.data.download
       description: "Downloads data from url"
       produces: 
         - "application/json"
@@ -87,7 +87,7 @@ paths:
     get:
       tags:
         - SVM
-      operationId: partition.nfl_knn_results_boxplot
+      operationId: cloudmesh.nn.service.partition.nfl_knn_results_boxplot
       description: "knn on the nfl data set"
       produces: 
         - "application/png"
