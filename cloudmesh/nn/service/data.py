@@ -1,3 +1,5 @@
+#This is the data downloading module and it also includes plotting defs 
+
 import requests
 import io
 import os
@@ -18,6 +20,10 @@ from cloudmesh.nn.service import code_dir
 #Obviously we should use a text file and a post to get this value and read it in here.
 
 url = 'https://drive.google.com/uc?export=download&id=1ge5hCVEcSh57XKCh3CVY3GcnHc6WETpA'
+
+# This implementation allows the user to place a file in called input.txt in the dir called input
+# The structure of this could be imporved
+
 
 def get_url():
     input_path = code_dir+'/input/input.txt'
@@ -86,10 +92,3 @@ def create_boxplotNorm(filename):
     return send_file(bytes_obj,
                      attachment_filename='plot.png',
                      mimetype='image/png')
-def data_location():
-   if request.method == 'POST':
-      user = request.form['nm']
-      return redirect(url_for('success',name = user))
-   else:
-      user = request.args.get('nm')
-      return redirect(url_for('success',name = user))
