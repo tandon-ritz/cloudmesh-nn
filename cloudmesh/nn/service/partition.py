@@ -9,9 +9,12 @@ from numpy.random import permutation
 from sklearn.neighbors import KNeighborsRegressor
 import math
 import io
+from cloudmesh.nn.service import code_dir
 
 
 def data_selection(filename, player_selection):
+    data_dir = code_dir+'/data/'
+    file = data_dir + filename
     with open(filename,'r') as csvfile:
         my_file = pd.read_csv(csvfile)
     nfl = my_file
@@ -35,7 +38,8 @@ def data_selection(filename, player_selection):
 
 def selection(filename, player_selection):
     player_selection = str(player_selection)
-    path='data/'+filename
+    data_dir = code_dir+'/data/'
+    path=data_dir + filename
     return data_selection(path,player_selection)
 
 
