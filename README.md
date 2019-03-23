@@ -12,6 +12,7 @@ assign each line to a value currently it just takes the first line.
 
 * MOST Critical set up the post to put new data into set
 * Create use of input files for SVM
+* Implement def for normalization 
 * Create use of input file for knn
 * Finish NN implementation
 * Implement a decision tree to choose experiment
@@ -19,7 +20,9 @@ assign each line to a value currently it just takes the first line.
   csv and put in the mongoDB then we can add new data to DB
 
 ### Data
-Identify the useful end points for data gathering and exploring here.
+Identify the useful end points for data gathering and exploring
+here. Currently the user most add a data dir before the download will
+execute. 
 
 ### Experiment
 
