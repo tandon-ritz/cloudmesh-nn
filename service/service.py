@@ -17,7 +17,7 @@ app.add_api("nn.yaml")
 # create a URL route in our application for "/"
 @app.route("/")
 def home():
-    msg = {"msg": "Cloudmesh Neural Network Service"}
+    msg = {"msg": "Cloudmesh Machine Learning Service"}
     return jsonify(msg)
 
 

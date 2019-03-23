@@ -28,4 +28,19 @@ execute.
 
 Clean up files and mke seperate .py files for each experiment,
 currently they are all wrapped up in one file that is not named in a
-useful way. 
+useful way.
+
+### Using the service
+
+## File creation
+Currently the service takes a downloadble csv file--need to provide how
+to do this with google drive.
+
+## Download endpoint
+```
+localhost:8080/project19/data/output/<output>
+```
+Where the argument inside the <> is what you want to name you file. 
+
+
+
