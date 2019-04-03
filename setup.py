@@ -40,11 +40,11 @@ with open('README.md') as f:
 
 
 
-NAME = "cloudmesh.nn"
+NAME = "cloudmesh-nn"
 DESCRIPTION = "A command called nn and foo for the cloudmesh shell"
 AUTHOR = "Gregor von Laszewski"
 AUTHOR_EMAIL = "laszewski@gmail.com"
-URL = "https://github.com/cloudmesh/cloudmesh.nn"
+URL = "https://github.com/cloudmesh/cloudmesh-nn"
 
 
 setup(
