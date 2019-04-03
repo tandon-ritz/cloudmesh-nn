@@ -1,4 +1,4 @@
-from flask import Flask, send_file, make_response, 
+from flask import Flask, send_file, make_response
 from cloudmesh.nn.service.data import generate_figure
 
 def create_boxplot():
@@ -6,4 +6,4 @@ def create_boxplot():
     
     return send_file(bytes_obj,
                      attachment_filename='plot.png',
-                     mimetype='image/png'
+                     mimetype='image/png')
