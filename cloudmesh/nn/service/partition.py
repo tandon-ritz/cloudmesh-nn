@@ -88,7 +88,7 @@ def nfl_knn(filename):
 
     knn.fit(x_train, y_train)
     predictions = knn.predict(x_test)
-    predictions
+    # predictions
     actual = y_test
     mse = (((predictions - actual) ** 2).sum()) / len(predictions)
     img = plt.scatter(predictions, actual)
@@ -134,13 +134,13 @@ def nfl_knn_results(filename):
 
     knn.fit(x_train, y_train)
     predictions = knn.predict(x_test)
-    predictions
+    # predictions
     actual = y_test
     mse = (((predictions - actual) ** 2).sum()) / len(predictions)
     new = [predictions, actual]
     plt.boxplot(new)
     bytes_image = io.BytesIO()
-    bytes_image
+    # bytes_image
     plt.savefig(bytes_image, format='png')
     bytes_image.seek(0)
     return bytes_image
