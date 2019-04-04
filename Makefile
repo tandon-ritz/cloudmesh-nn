@@ -124,6 +124,11 @@ release: clean dist
 	python setup.py sdist bdist_wheel
 	git push origin master --tags
 	twine check dist/*
+	twine upload --repository testpypi https://test.pypi.org/legacy/ dist/*
+
+
+upload:
+	twine check dist/*
 	twine upload dist/*
 
 pip: patch
@@ -135,8 +140,6 @@ log:
 	gitchangelog | fgrep -v ":dev:" | fgrep -v ":new:" > ChangeLog
 	git commit -m "chg: dev: Update ChangeLog" ChangeLog
 	git push
-
-
 ######################################################################
 # DEMO
 ######################################################################
