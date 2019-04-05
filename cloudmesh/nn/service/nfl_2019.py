@@ -5,7 +5,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy.spatial import distance
 
-
 # prompt user for file name to read, assuming this is a csv
 pwd = os.getcwd()
 pwd = str(pwd) + "/"
@@ -15,8 +14,6 @@ print(file_path)
 with open(str(file_path), 'r') as csvfile:
     my_file = pandas.read_csv(csvfile)
 
-
-    
 player_selection = input("Enter the player name you want to explore: ")
 nfl = my_file
 # Manipulate file for the nfl example
@@ -24,7 +21,9 @@ nfl_numeric = nfl.select_dtypes(include=[np.number])
 nfl_normalized = (nfl_numeric - nfl_numeric.mean()) / nfl_numeric.std()
 nfl_normalized.fillna(0, inplace=True)
 player_normalized = nfl_normalized[nfl["Player"] == str(player_selection)]
-euclidean_distances = nfl_normalized.apply(lambda row: distance.euclidean(row, player_normalized), axis=1)
+euclidean_distances = nfl_normalized.apply(
+    lambda row: distance.euclidean(row, player_normalized), axis=1)
+
 
 def euclidean_distance(row, selected_player):
     diff = row - selected_player
@@ -33,22 +32,22 @@ def euclidean_distance(row, selected_player):
     sqrt_squares = sum_squares ** 0.5
     return sqrt_squares
 
+
 nfl_dist = euclidean_distance(nfl_normalized, player_normalized)
 
-
 # Create a new dataframe with distances.
-distance_frame = pandas.DataFrame(data={"dist": euclidean_distances, "idx": euclidean_distances.index})
+distance_frame = pandas.DataFrame(
+    data={"dist": euclidean_distances, "idx": euclidean_distances.index})
 distance_frame.sort_values("dist", inplace=True)
 second_smallest = distance_frame.iloc[1]["idx"]
-five_smallest = [distance_frame.iloc[1]["idx"], distance_frame.iloc[2]["idx"], distance_frame.iloc[3]["idx"],
-distance_frame.iloc[4]["idx"], distance_frame.iloc[5]["idx"]]
+five_smallest = [distance_frame.iloc[1]["idx"], distance_frame.iloc[2]["idx"],
+                 distance_frame.iloc[3]["idx"],
+                 distance_frame.iloc[4]["idx"], distance_frame.iloc[5]["idx"]]
 lst = np.zeros(5)
-i=0
+i = 0
 for i in range(5):
     lst = (nfl.iloc[int(five_smallest[i])]["Player"])
     print(i, lst)
-
-
 
 """
 

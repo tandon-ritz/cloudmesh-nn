@@ -7,12 +7,12 @@ import connexion
 from flask import Flask
 from flask_swagger_ui import get_swaggerui_blueprint
 
-
 # Create the application instance
 app = connexion.App(__name__, specification_dir="./")
 
 # Read the yaml file to configure the endpoints
 app.add_api("master.yaml")
+
 
 # create a URL route in our application for "/"
 @app.route("/")
