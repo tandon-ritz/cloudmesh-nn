@@ -170,4 +170,4 @@ log:
 ######################################################################
 
 demo:
-    make -f Makefile.demo demo
+	make -f Makefile.demo demo
