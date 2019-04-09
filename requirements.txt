@@ -1,5 +1,3 @@
 pandas
 sklearn
 matplotlib
-cloudmesh-cmd5
-cloudmesh-sys
