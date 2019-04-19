@@ -19,7 +19,7 @@ from cloudmesh.nn.service import code_dir
 
 # Obviously we should use a text file and a post to get this value and read it in here.
 
-url = 'https://drive.google.com/uc?export=download&id=1ge5hCVEcSh57XKCh3CVY3GcnHc6WETpA'
+#url = 'https://drive.google.com/uc?export=download&id=1ge5hCVEcSh57XKCh3CVY3GcnHc6WETpA'
 
 
 # This implementation allows the user to place a file in called input.txt in the dir called input
@@ -36,7 +36,7 @@ def get_url():
 
 
 def new_download(filename):
-    get_url()
+    url = get_url()
     r = requests.get(url, allow_redirects=True)
     open(filename, 'wb').write(r.content)
 
