@@ -50,7 +50,7 @@ def selection(filename, player_selection):
 
 
 def nfl_knn(filename):
-    my_file = pd.read_csv('data/' + filename)
+    my_file = pd.read_csv(code_dir + '/data/' + filename)
     nfl = my_file
     nfl_numeric = nfl.select_dtypes(include=[np.number])
     nfl_normalized = (nfl_numeric - nfl_numeric.mean()) / nfl_numeric.std()
@@ -63,9 +63,9 @@ def nfl_knn(filename):
     test_cutoff = math.floor(len(nfl_normalized) / 3)
     # Generate the test set by taking the first 1/3 of the randomly shuffled
     # indices.
-    test = nfl_normalized.loc[random_indices[1:test_cutoff]]
+    test = nfl_normalized.loc[random_indices[1:int(test_cutoff)]]
     # Generate the train set with the rest of the data.
-    train = nfl_normalized.loc[random_indices[test_cutoff:]]
+    train = nfl_normalized.loc[random_indices[int(test_cutoff):]]
 
     # Use sklearn
     nfl_normalized.fillna(0, inplace=True)
@@ -76,8 +76,8 @@ def nfl_knn(filename):
     x_columns = distance_columns
     random_indices = permutation(nfl_normalized.index)
     test_cutoff = math.floor(len(nfl_normalized) / 3)
-    test = nfl_normalized.loc[random_indices[1:test_cutoff]]
-    train = nfl_normalized.loc[random_indices[test_cutoff:]]
+    test = nfl_normalized.loc[random_indices[1:int(test_cutoff)]]
+    train = nfl_normalized.loc[random_indices[int(test_cutoff):]]
 
     knn = KNeighborsRegressor(n_neighbors=7)
 
@@ -96,7 +96,7 @@ def nfl_knn(filename):
 
 
 def nfl_knn_results(filename):
-    my_file = pd.read_csv('data/' + filename)
+    my_file = pd.read_csv(code_dir + '/data/' + filename)
     nfl = my_file
     nfl_numeric = nfl.select_dtypes(include=[np.number])
     nfl_normalized = (nfl_numeric - nfl_numeric.mean()) / nfl_numeric.std()
@@ -109,9 +109,9 @@ def nfl_knn_results(filename):
     test_cutoff = math.floor(len(nfl_normalized) / 3)
     # Generate the test set by taking the first 1/3 of the randomly shuffled
     # indices.
-    test = nfl_normalized.loc[random_indices[1:test_cutoff]]
+    test = nfl_normalized.loc[random_indices[1:int(test_cutoff)]]
     # Generate the train set with the rest of the data.
-    train = nfl_normalized.loc[random_indices[test_cutoff:]]
+    train = nfl_normalized.loc[random_indices[int(test_cutoff):]]
 
     # Use sklearn
     nfl_normalized.fillna(0, inplace=True)
@@ -122,8 +122,8 @@ def nfl_knn_results(filename):
     x_columns = distance_columns
     random_indices = permutation(nfl_normalized.index)
     test_cutoff = math.floor(len(nfl_normalized) / 3)
-    test = nfl_normalized.loc[random_indices[1:test_cutoff]]
-    train = nfl_normalized.loc[random_indices[test_cutoff:]]
+    test = nfl_normalized.loc[random_indices[1:int(test_cutoff)]]
+    train = nfl_normalized.loc[random_indices[int(test_cutoff):]]
 
     knn = KNeighborsRegressor(n_neighbors=12)
 
