@@ -12,6 +12,7 @@ from sklearn.svm import SVC
 from os import listdir
 from flask import Flask, request, send_file, make_response
 from cloudmesh.nn.service import code_dir
+from pymongo import MongoClient
 
 # url = 'https://drive.google.com/file/d/1ge5hCVEcSh57XKCh3CVY3GcnHc6WETpA/view?usp=sharing'
 # url = 'https://drive.google.com/uc?export=download&id=12u9eviakwqiqsz7x8Sp1ybG9uBaF9bJV'
@@ -52,6 +53,22 @@ def download(output):
     output_file = data_dir + output
     new_download(filename=output_file)
     return str(output) + " Downloaded" + "to" + str(code_dir)
+
+def upload(uploadfile):
+    client = MongoClient()
+
+    dbname = client.list_database_names()
+
+    if 'nfl' not in dbname:
+        db = client.nfl
+        players=db.items
+
+        df=pd.read_csv(code_dir + '/data/' + uploadfile)
+        records_=df.to_dict(orient='records')
+        result = db.players.insert_many(records_)
+        return 
+    else:
+	    return "nfl database with players collection already exist" 
 
 
 def generate_figure(filename):
