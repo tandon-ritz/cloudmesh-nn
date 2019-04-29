@@ -29,8 +29,20 @@ paths:
         "200":
           description: "Data info"
           schema: {}
-
-
+ 
+  /data/upload/<uploadfile>:
+    put:
+      tags:
+        - DATA
+      operationId: cloudmesh.nn.service.data.upload
+      description: "upload data into mongo db database"
+      produces: 
+        - "application/json"
+      responses: 
+        "200":
+          description: "Data info"
+          schema: {}
+ 
   /selection/<filename>/player_selection/<player_selection>:
     get:
       tags:
