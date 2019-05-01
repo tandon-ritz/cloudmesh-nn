@@ -30,6 +30,99 @@ paths:
           description: "Data info"
           schema: {}
 
+  /data/player: 
+    put:
+      tags:
+        - DATA
+      operationId: cloudmesh.nn.service.data.player
+      summary: "This API endpoint add player details"
+      description: "This API endpoint add player details"
+      parameters:
+        - name: Player
+          in: query
+          description: player name passed in query string
+          type: string
+          required: True
+        - name: Pos
+          in: query
+          description: Pos passed in query string
+          type: string
+          required: True
+        - name: Ht
+          in: query
+          description: Ht passed in query string
+          type: string
+          required: True
+        - name: Wt
+          in: query
+          description: Wt passed in query string
+          type: string
+          required: True
+        - name: Forty
+          in: query
+          description: Forty passed in query string
+          type: string
+          required: True
+        - name: Vertical
+          in: query
+          description: Vertical passed in query string
+          type: string
+          required: True
+        - name: BenchReps
+          in: query
+          description: BenchReps passed in query string
+          type: string
+          required: True
+        - name: BroadJump
+          in: query
+          description: BroadJump passed in query string
+          type: string
+          required: True
+        - name: Cone
+          in: query
+          description: Cone passed in query string
+          type: string
+          required: True
+        - name: Shuttle
+          in: query
+          description: Shuttle passed in query string
+          type: string
+          required: True
+        - name: Year
+          in: query
+          description: Year passed in query string
+          type: string
+          required: True
+        - name: Pfr_ID
+          in: query
+          description: Pfr_ID passed in query string
+          type: string
+          required: True
+        - name: AV
+          in: query
+          description: AV passed in query string
+          type: string
+          required: True
+        - name: Team
+          in: query
+          description: Team passed in query string
+          type: string
+          required: True
+        - name: Round
+          in: query
+          description: Round passed in query string
+          type: string
+          required: True
+        - name: Pick
+          in: query
+          description: Pick passed in query string
+          type: string
+          required: True
+      responses:
+        200:
+          description: Successfully added player details
+          schema: {}
+
 
   /selection/<filename>/player_selection/<player_selection>:
     get:
