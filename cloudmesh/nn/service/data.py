@@ -71,7 +71,48 @@ def upload(uploadfile):
 	    return "nfl database with players collection already exist"
 
 
+#  This method inserts single payer details into players collection of nfl mongo db database 
 
+def player():
+ 
+    player = request.args.get('Player', None)
+    pos = request.args.get('Pos', None)
+    ht = request.args.get('Ht', None)
+    wt = request.args.get('Wt', None)
+    forty = request.args.get('Forty', None)
+    vertical = request.args.get('Vertical', None)
+    benchreps = request.args.get('BenchReps', None)
+    broadjump = request.args.get('BroadJump', None)
+    cone = request.args.get('Cone', None)
+    shuttle = request.args.get('Shuttle', None)
+    year = request.args.get('Year', None)
+    pfrid = request.args.get('Pfr_ID', None)
+    av = request.args.get('AV', None)
+    team = request.args.get('Team', None)
+    rnd = request.args.get('Round', None)
+    pick = request.args.get('Pick', None)
+
+    client = MongoClient()
+
+    dbname = client.list_database_names()
+
+    if 'nfl' in dbname:
+        db = client['nfl']
+        
+        if "players" in db.list_collection_names():
+          players = db['players']
+          try:
+            db.players.insert_one( {"Player":player,"Pos":pos,"Ht":ht,"Wt":wt,
+"Forty":forty,"Vertical":vertical,"BenchReps":benchreps,"BroadJump":broadjump,"Cone":cone,"Shuttle":shuttle,"Year":year,"Pfr_ID":pfrid,"AV":av,"Team":team,"Round":rnd,"Pick":pick})
+            return "successfully inserted record into players collection"
+          except:
+            return "error occured while inserting player details into database"
+        else:
+            return "players collection does not exist in database"
+    else:
+        return "nfl database does not exist"
+
+    
 def generate_figure(filename):
     data_dir = code_dir + '/data/'
     file = data_dir + filename
